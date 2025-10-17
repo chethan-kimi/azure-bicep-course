@@ -17,7 +17,7 @@ steps:
 - task: AzureCLI@2
   displayName: Preview Bicep Changes
   inputs:
-    azureSubscription: 'Microsoft-Azure-0(17b12858-3960-4e6f-a663-a06fdae23428)'
+    azureSubscription: 'Azure subscription 1(0f1d3500-2122-43dc-b77f-47fc37a4b4ad)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
@@ -30,10 +30,24 @@ steps:
 - task: AzureCLI@2
   displayName: Deploy Bicep To Azure
   inputs:
-    azureSubscription: 'Microsoft-Azure-0(17b12858-3960-4e6f-a663-a06fdae23428)'
+    azureSubscription: 'Azure subscription 1(0f1d3500-2122-43dc-b77f-47fc37a4b4ad)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
       az deployment group create --resource-group $(resourceGroupName) \
          --template-file $(templateFile) \
          --parameters webAppName=$(webAppName)
+
+        #  - task: AzureCLI@2
+        #    inputs:
+        #      azureSubscription: 'Azure subscription 1(0f1d3500-2122-43dc-b77f-47fc37a4b4ad)'
+        #      scriptType: 'ps'
+        #      scriptLocation: 'inlineScript'
+        #      inlineScript: |
+        #        az --version
+        #              az group create --name $(resourceGroupName) --location $(location)
+        #              az deployment group what-if --resource-group $(resourceGroupName) \
+        #                 --template-file $(templateFile) \
+        #                 --parameters webAppName=$(webAppName)
+
+
