@@ -38,16 +38,16 @@ steps:
          --template-file $(templateFile) \
          --parameters webAppName=$(webAppName)
 
-        #  - task: AzureCLI@2
-        #    inputs:
-        #      azureSubscription: 'Azure subscription 1(0f1d3500-2122-43dc-b77f-47fc37a4b4ad)'
-        #      scriptType: 'ps'
-        #      scriptLocation: 'inlineScript'
-        #      inlineScript: |
-        #        az --version
-        #              az group create --name $(resourceGroupName) --location $(location)
-        #              az deployment group what-if --resource-group $(resourceGroupName) \
-        #                 --template-file $(templateFile) \
-        #                 --parameters webAppName=$(webAppName)
+         - task: AzureCLI@2
+           inputs:
+             azureSubscription: 'Azure subscription 1(0f1d3500-2122-43dc-b77f-47fc37a4b4ad)'
+             scriptType: 'ps'
+             scriptLocation: 'inlineScript'
+             inlineScript: |
+               az --version
+                     az group create --name $(resourceGroupName) --location $(location)
+                     az deployment group what-if --resource-group $(resourceGroupName) \
+                        --template-file $(templateFile) \
+                        --parameters webAppName=$(webAppName)
 
 
